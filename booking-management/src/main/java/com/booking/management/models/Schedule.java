@@ -1,114 +1,87 @@
-package com.flight.admin.models;
+package com.booking.management.models;
 
-public class FlightSchedule {
-	
-	private int id;
-	private String airline;
+public class Schedule {
+
+	private String airlineName;
 	private String flightName;
 	private String startPlace;
 	private String endPlace;
-	private String startDate;
 	private String startTime;
-	private String endDate;
 	private String endTime;
-	private String scheduledDay;
+	private String journeyDate;
 	private float price;
 	private int availability;
-
-	public int getId() {
-		return id;
+	
+	public String getAirlineName() {
+		return airlineName;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setAirlineName(String airlineName) {
+		this.airlineName = airlineName;
 	}
-
-	public String getAirline() {
-		return airline;
-	}
-
-	public void setAirline(String airline) {
-		this.airline = airline;
-	}
-
 	public String getFlightName() {
 		return flightName;
 	}
-
 	public void setFlightName(String flightName) {
 		this.flightName = flightName;
 	}
-
 	public String getStartPlace() {
 		return startPlace;
 	}
-
 	public void setStartPlace(String startPlace) {
 		this.startPlace = startPlace;
 	}
-
 	public String getEndPlace() {
 		return endPlace;
 	}
-
 	public void setEndPlace(String endPlace) {
 		this.endPlace = endPlace;
 	}
-
-	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-
 	public String getStartTime() {
 		return startTime;
 	}
-
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-
-	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
-
 	public String getEndTime() {
 		return endTime;
 	}
-
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-
-	public String getScheduledDay() {
-		return scheduledDay;
+	public String getJourneyDate() {
+		return journeyDate;
 	}
-
-	public void setScheduledDay(String scheduledDay) {
-		this.scheduledDay = scheduledDay;
+	public void setJourneyDate(String journeyDate) {
+		this.journeyDate = journeyDate;
 	}
-
 	public float getPrice() {
 		return price;
 	}
-
 	public void setPrice(float price) {
 		this.price = price;
 	}
-
 	public int getAvailability() {
 		return availability;
 	}
-
 	public void setAvailability(int availability) {
 		this.availability = availability;
 	}
-
+	
+	public Schedule(String airlineName, String flightName, String startPlace, String endPlace,
+			String startTime, String endTime, String journeyDate, float price, int availability) {
+		super();
+		this.airlineName = airlineName;
+		this.flightName = flightName;
+		this.startPlace = startPlace;
+		this.endPlace = endPlace;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.journeyDate = journeyDate;
+		this.price = price;
+		this.availability = availability;
+	}
+	
+	public Schedule() {}
+	
 }
+

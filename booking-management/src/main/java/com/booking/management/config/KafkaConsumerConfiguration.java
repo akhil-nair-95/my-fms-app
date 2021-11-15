@@ -1,4 +1,4 @@
-package com.demo.config;
+package com.booking.management.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,14 +13,12 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import com.demo.models.Book;
-
-@EnableKafka
 @Configuration
+@EnableKafka
 public class KafkaConsumerConfiguration {
-
+	
     @Bean
-    public ConsumerFactory<String, Book> userConsumerFactory() {
+    public ConsumerFactory<String, String> userConsumerFactory() {
         Map<String, Object> config = new HashMap<>();
 
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -28,12 +26,12 @@ public class KafkaConsumerConfiguration {
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
-                new JsonDeserializer<>(Book.class));
+                new JsonDeserializer<>(String.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Book> userKafkaListenerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Book> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, String> userKafkaListenerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(userConsumerFactory());
         return factory;
     }

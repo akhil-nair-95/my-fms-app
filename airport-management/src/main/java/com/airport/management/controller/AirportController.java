@@ -16,7 +16,6 @@ import com.airport.management.models.Airport;
 import com.airport.management.service.AirportService;
 
 @RestController
-//@RequestMapping("/airport")
 public class AirportController {
 
 	@Autowired
