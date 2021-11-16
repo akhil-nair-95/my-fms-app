@@ -26,7 +26,7 @@ import com.booking.management.repository.TicketRepository;
 @Service
 public class BookingService {
 	
-	Logger logger = LoggerFactory.getLogger(BookingService.class);
+//	Logger logger = LoggerFactory.getLogger(BookingService.class);
 	
 	@Autowired
 	private TicketRepository ticketRepo;
@@ -81,7 +81,7 @@ public class BookingService {
         requestHeaders.setContentType(MediaType.APPLICATION_JSON);
         requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<SearchRequest> req = new HttpEntity<>(request, requestHeaders);
-        ResponseEntity<Schedule[]> response = restTemplate.postForEntity("http://AIRLINES-SERVICE/searchavailability", req,
+        ResponseEntity<Schedule[]> response = restTemplate.postForEntity("http://FLIGHT-SERVICE/search", req,
         		Schedule[].class);
 		return Arrays.asList(response.getBody());
 	}
@@ -94,7 +94,10 @@ public class BookingService {
 			passengers = getPassengerByTicketId(ticket.getTicketId());
 		}
 		if (!passengers.isEmpty()) {
-			logger.warn("The following tickets have been cancelled. Please find below the details: \n" + passengers);
+			System.out.println("***************************************************************************");
+			System.out.println("The following tickets have been cancelled. Please find below the details:");
+			System.out.println(passengers);
+			System.out.println("***************************************************************************");
 
 		}
 	}

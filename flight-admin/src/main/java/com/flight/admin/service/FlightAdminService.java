@@ -30,8 +30,8 @@ public class FlightAdminService {
 	private static final String TOPIC = "kafka_topic_name";
 	
 	public List<Airline> viewAllAirlines() {
-		ResponseEntity<List<Airline>> response = restTemplate.exchange("http://AIRLINES-SERVICE/all", HttpMethod.GET,
-				null, new ParameterizedTypeReference<List<Airline>>() {
+		ResponseEntity<List<Airline>> response = restTemplate.exchange("http://AIRLINE-SERVICE/allAirlines",
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<Airline>>() {
 				});
 		return response.getBody();
 	}
@@ -42,7 +42,7 @@ public class FlightAdminService {
 		requestHeaders.setContentType(MediaType.APPLICATION_JSON);
 		requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<Airline> req = new HttpEntity<>(airline, requestHeaders);
-		ResponseEntity<Airline> response = restTemplate.postForEntity("http://AIRLINES-SERVICE/add", req,
+		ResponseEntity<Airline> response = restTemplate.postForEntity("http://AIRLINE-SERVICE/addAirline", req,
 				Airline.class);
 		return response.getBody();
 	}
@@ -53,13 +53,13 @@ public class FlightAdminService {
 		requestHeaders.setContentType(MediaType.APPLICATION_JSON);
 		requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<Airline> req = new HttpEntity<>(airline, requestHeaders);
-		ResponseEntity<Airline> response = restTemplate.postForEntity("http://AIRLINES-SERVICE/delete", req,
+		ResponseEntity<Airline> response = restTemplate.postForEntity("http://AIRLINE-SERVICE/updateAirline", req,
 				Airline.class);
 		return response.getBody();
 	}
 
 	public Airline findAirlinesByName(String name) {
-		ResponseEntity<Airline> response = restTemplate.exchange("http://AIRLINES-SERVICE/" + name, HttpMethod.GET,
+		ResponseEntity<Airline> response = restTemplate.exchange("http://AIRLINE-SERVICE/viewAirline" + name, HttpMethod.GET,
 				null, new ParameterizedTypeReference<Airline>() {
 				});
 		return response.getBody();
@@ -73,14 +73,14 @@ public class FlightAdminService {
 	}
 	
 	public Flight findFlightByName(String name) {
-		ResponseEntity<Flight> response = restTemplate.exchange("http://FLIGHT-SERVICE/viewFlight?name=" + name,
+		ResponseEntity<Flight> response = restTemplate.exchange("http://FLIGHT-SERVICE/viewFlight/" + name,
 				HttpMethod.GET, null, new ParameterizedTypeReference<Flight>() {
 				});
 		return response.getBody();
 	}
 	
 	public Flight findFlightByAirline(String airline) {
-		ResponseEntity<Flight> response = restTemplate.exchange("http://FLIGHT-SERVICE/viewFlight?airline=" + airline,
+		ResponseEntity<Flight> response = restTemplate.exchange("http://FLIGHT-SERVICE//viewFlight/airline/" + airline,
 				HttpMethod.GET, null, new ParameterizedTypeReference<Flight>() {
 				});
 		return response.getBody();
@@ -107,7 +107,7 @@ public class FlightAdminService {
 	}
 
 	public List<FlightSchedule> viewAllFlightSchedule() {
-		ResponseEntity<List<FlightSchedule>> response = restTemplate.exchange("http://AIRLINES-SERVICE/schedule",
+		ResponseEntity<List<FlightSchedule>> response = restTemplate.exchange("http://FLIGHT-SERVICE/schedules",
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<FlightSchedule>>() {
 				});
 		return response.getBody();
@@ -119,7 +119,7 @@ public class FlightAdminService {
 		requestHeaders.setContentType(MediaType.APPLICATION_JSON);
 		requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<FlightSchedule> req = new HttpEntity<>(flightSchedule, requestHeaders);
-		ResponseEntity<FlightSchedule> response = restTemplate.postForEntity("http://AIRLINES-SERVICE/schedule/add",
+		ResponseEntity<FlightSchedule> response = restTemplate.postForEntity("http://FLIGHT-SERVICE/schedule/add",
 				req, FlightSchedule.class);
 		return response.getBody();
 	}
@@ -130,15 +130,17 @@ public class FlightAdminService {
 		requestHeaders.setContentType(MediaType.APPLICATION_JSON);
 		requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<FlightSchedule> req = new HttpEntity<>(flightSchedule, requestHeaders);
-		ResponseEntity<FlightSchedule> response = restTemplate.postForEntity("http://AIRLINES-SERVICE/schedule/cancel",
+		ResponseEntity<FlightSchedule> response = restTemplate.postForEntity("http://FLIGHT-SERVICE/schedule/cancel",
 				req, FlightSchedule.class);
-		notifyUser(flightSchedule.getFlightName());
+		boolean notified = notifyUser(flightSchedule.getFlightName());
+		System.out.println("Kafka request send: " + notified);
 		return response.getBody();
 	}
 
-	private void notifyUser(String flightName) {
+	private boolean notifyUser(String flightName) {
+		System.out.println(TOPIC);
 		kafkaTemplate.send(TOPIC, flightName);
-
+		return true;
 	}
 
 }

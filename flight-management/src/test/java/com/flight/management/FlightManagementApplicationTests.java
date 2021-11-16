@@ -18,16 +18,17 @@ class FlightManagementApplicationTests {
 	private FlightManagementService service;
 
 	
-//	@Test
-//	public void shouldGetFlight() {
-//		String name = "ABC";
-//		Flights flight = service.findFlight(name);
-//			System.out.println(flight);
-//			Assertions.assertNotNull(flight);
-//			Assertions.assertNotNull(flight.getCapacity());
-//			MatcherAssert.assertThat(flight, Matchers.instanceOf(Flights.class));
-//			MatcherAssert.assertThat(flight.getCapacity(), Matchers.greaterThan(0));
-//		
-//	}
+	@Test
+	public void shouldGetFlight() {
+		String name = "ABC";
+		Assertions.assertThrows(FlightNotFounfException.class, () -> {
+			Flights flight = service.findFlight(name);
+			Assertions.assertNotNull(flight);
+			MatcherAssert.assertThat(flight, Matchers.instanceOf(Flights.class));
+			MatcherAssert.assertThat(flight.getCapacity(), Matchers.greaterThan(0));
+		});
+		
+
+	}
 
 }

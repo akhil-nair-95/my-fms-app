@@ -33,6 +33,7 @@ public class AirportController {
 	
 	@GetMapping("/viewAirport/{id}")
 	public Airport viewAirport(@PathVariable("id") String id) throws Exception{
+		System.out.println("View airport controller");
 		return airService.getAirport(id);
 	}
 	

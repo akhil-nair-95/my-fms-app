@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.airport.management.dao.AirportDao;
@@ -20,7 +21,9 @@ public class AirportService {
 		return airport.findAll();
 	}
 
+	@Cacheable(value = "airportById", key="#id")
 	public Airport getAirport(String id) throws Exception {
+		System.out.println("view airport service");
 		Optional<Airport> airportData = airport.findById(Integer.valueOf(id));
 		if (airportData.isPresent()) {
 			return airportData.get();

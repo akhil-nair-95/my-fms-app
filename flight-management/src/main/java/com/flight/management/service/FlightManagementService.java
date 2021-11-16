@@ -1,6 +1,7 @@
 package com.flight.management.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,15 @@ public class FlightManagementService {
 	
 	public FlightSchedule saveSchedule(FlightSchedule schedule) {
 		return scheduleRepo.save(schedule);
+	}
+	
+	public FlightSchedule updateSchedule(FlightSchedule schedule) throws Exception {
+		Optional<FlightSchedule> scheduleData = scheduleRepo.findById(Integer.valueOf(schedule.getId()));
+		if (scheduleData.isPresent()) {
+			return scheduleRepo.save(schedule);
+		} else {
+			throw new Exception("Invalid Data entered");
+		}
 	}
 	
 	public List<FlightSchedule> findScheduleByDestination(SearchRequest request) {

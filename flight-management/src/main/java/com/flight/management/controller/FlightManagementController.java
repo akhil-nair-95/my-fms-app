@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,13 +31,13 @@ public class FlightManagementController {
 		return flightService.saveFlight(flight);
 	}
 	
-	@GetMapping("/viewFlight")
-	public Flights viewFlight(@RequestParam(name = "name") String name) throws Exception {
+	@GetMapping("/viewFlight/{name}")
+	public Flights viewFlight(@PathVariable("name") String name) throws Exception {
 		return flightService.findFlight(name);
 	}
 	
-	@GetMapping("/viewFlights")
-	public List<Flights> viewFlights(@RequestParam(name = "airline") String airline){
+	@GetMapping("/viewFlight/airline/{name}")
+	public List<Flights> viewFlights(@PathVariable("name") String airline){
 		return flightService.findFlightByAirline(airline);
 	}
 	
@@ -46,12 +47,17 @@ public class FlightManagementController {
 	}
 	
 	@PostMapping("/schedule/add")
-	public FlightSchedule addSchedule(FlightSchedule schedule) {
+	public FlightSchedule addSchedule(@RequestBody FlightSchedule schedule) {
 		return flightService.saveSchedule(schedule);
 	}
 	
+	@PostMapping("/schedule/cancel")
+	public FlightSchedule cancelSchedule(@RequestBody FlightSchedule schedule) throws Exception {
+		return flightService.updateSchedule(schedule);
+	}
+	
 	@PostMapping("/search")
-	public List<FlightSchedule> searchSchedule(SearchRequest request) {
+	public List<FlightSchedule> searchSchedule(@RequestBody SearchRequest request) {
 		return flightService.findScheduleByDestination(request);
 	}
 

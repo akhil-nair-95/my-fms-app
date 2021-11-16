@@ -67,7 +67,8 @@ public class FlightAdminController {
 	
 	@PostMapping("/schedule/cancel")
 	public FlightSchedule cancelFlightSchedule(@RequestBody FlightSchedule flightSchedule){
-		return adminService.saveFlightSchedule(flightSchedule);
+		System.out.println("Inside Cancel Schedule cntroller");
+		return adminService.cancelFlightSchedule(flightSchedule);
 	}
 
 }

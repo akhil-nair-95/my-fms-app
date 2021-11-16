@@ -16,7 +16,7 @@ public class Ticket {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_generator")
-	@GenericGenerator(name="sequence_generator", strategy = "com.flightbooking.utilities.StringSequenceGenerator", parameters = {
+	@GenericGenerator(name="sequence_generator", strategy = "com.booking.management.util.TicketGenerator", parameters = {
 			@Parameter(name = TicketGenerator.INCREMENT_PARAM, value="50"),
 			@Parameter(name = TicketGenerator.VALUE_PREFIX_PARAMETER, value="ABC_"),
 			@Parameter(name = TicketGenerator.NUMBER_FORMAT_PARAMETER, value="%05d") })
