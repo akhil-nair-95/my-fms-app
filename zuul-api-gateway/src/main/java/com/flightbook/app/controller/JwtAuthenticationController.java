@@ -21,7 +21,7 @@ import com.flightbook.app.util.JwtTokenUtil;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "**")
 @RequestMapping("/authenticate")
 public class JwtAuthenticationController {
 

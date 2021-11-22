@@ -197,6 +197,7 @@ export class GetUserDetailsComponent implements OnInit {
       console.log("AfterBooking");
       window.alert("Your Ticket has booked Successfully!!! \n Your ticket number: " + res.ticket.ticketId);
       let route = '/users/dashboard/booking-history';
+      localStorage.setItem("ticketId", res.ticket.ticketId);
       this.router.navigate([route]);
     })
   }

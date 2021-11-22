@@ -28,8 +28,9 @@ public class AirlineService {
 		throw new Exception("Airline not available");
 	}
 
-	public void addAirline(Airlines airline) {
+	public boolean addAirline(Airlines airline) {
 		airlineRepo.save(airline);
+		return true;
 
 	}
 

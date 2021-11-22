@@ -66,11 +66,6 @@ export class AdminService {
     return this.httpClient.post<string>(this.adminUrl + '/api/v1/admin/flight/schedule/cancel', flight, { 'headers': this.addHeaderTotheUrl() });
   }
 
-  //Add New Discount:
-  addDiscount(discount: any) {
-    return this.httpClient.post<boolean>(this.adminUrl + "/add-discounts", discount, { 'headers': this.addHeaderTotheUrl() });
-  }
-
   //Get All Booked Tickets:
   getBookedFlightDetails() {
     return this.httpClient.get(this.adminUrl + "/api/v1/booking/ticket/all", { 'headers': this.addHeaderTotheUrl() });

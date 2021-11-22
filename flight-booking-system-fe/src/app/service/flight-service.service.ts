@@ -31,7 +31,7 @@ export class FlightServiceService {
 
   //Get List of Airports API:
   getAllAirportList() {
-    return this.http.get<string[]>(this.adminUrl + "/airports-location-list", { 'headers': this.addHeaderTotheUrl() });
+    return this.http.get<string[]>(this.adminUrl + "/api/v1/airport", { 'headers': this.addHeaderTotheUrl() });
   }
 
   //Get Search Result:
@@ -56,16 +56,6 @@ export class FlightServiceService {
 
   cancelFlight(ticket: any) {
     return this.http.put(this.adminUrl + "/api/v1/booking/ticket/cancel" , ticket, { 'headers': this.addHeaderTotheUrl() });
-  }
-
-  // fetch Discount:
-  getDiscountDetails() {
-    return this.http.get(this.adminUrl + '/get-discounts', { 'headers': this.addHeaderTotheUrl() });
-  }
-
-  // Register New User - Customer For Login:
-  registerNewUser(userDetails: any) {
-    return this.http.post(this.adminUrl + "/register-user", userDetails);
   }
 
 }

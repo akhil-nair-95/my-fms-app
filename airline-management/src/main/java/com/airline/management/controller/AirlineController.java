@@ -36,8 +36,8 @@ public class AirlineController {
 	}
 	
 	@PostMapping("/addAirline")
-	public void addAirline(@RequestBody Airlines airline) {
-		airService.addAirline(airline);
+	public boolean addAirline(@RequestBody Airlines airline) {
+		return airService.addAirline(airline);
 	}
 	
 	@PutMapping("/updateAirline")

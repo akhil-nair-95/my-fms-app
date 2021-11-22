@@ -24,6 +24,7 @@ public class FlightSchedule {
 	private String scheduledDay;
 	private float price;
 	private int availability;
+	private int totalSeats;
 
 	public int getId() {
 		return id;
@@ -121,8 +122,16 @@ public class FlightSchedule {
 		this.availability = availability;
 	}
 
+	public int getTotalSeats() {
+		return totalSeats;
+	}
+
+	public void setTotalSeats(int totalSeats) {
+		this.totalSeats = totalSeats;
+	}
+
 	public FlightSchedule(String airline, String flightName, String startPlace, String endPlace, String startDate,
-			String startTime, String endDate, String endTime, String scheduledDay, float price, int availability) {
+			String startTime, String endDate, String endTime, String scheduledDay, float price, int availability, int totalSeats) {
 		super();
 		this.airline = airline;
 		this.flightName = flightName;
@@ -135,6 +144,7 @@ public class FlightSchedule {
 		this.scheduledDay = scheduledDay;
 		this.price = price;
 		this.availability = availability;
+		this.totalSeats = totalSeats;
 	}
 
 	public FlightSchedule() {
@@ -146,7 +156,7 @@ public class FlightSchedule {
 		return "FlightSchedule [id=" + id + ", airline=" + airline + ", flightName=" + flightName + ", startPlace="
 				+ startPlace + ", endPlace=" + endPlace + ", startDate=" + startDate + ", startTime=" + startTime
 				+ ", endDate=" + endDate + ", endTime=" + endTime + ", scheduledDay=" + scheduledDay + ", price="
-				+ price + ", availability=" + availability + "]";
+				+ price + ", availability=" + availability + ", totalSeats=" + totalSeats + "]";
 	}
 
 }

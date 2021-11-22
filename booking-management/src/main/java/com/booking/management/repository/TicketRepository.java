@@ -8,7 +8,7 @@ import com.booking.management.models.Ticket;
 
 public interface TicketRepository extends JpaRepository<Ticket, String> {
 
-	Ticket findByEmail(String email);
+	List<Ticket> findByEmail(String email);
 	
 	List<Ticket> findByFlightName(String flightName);
 

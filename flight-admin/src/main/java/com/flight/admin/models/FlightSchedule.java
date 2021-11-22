@@ -14,6 +14,7 @@ public class FlightSchedule {
 	private String scheduledDay;
 	private float price;
 	private int availability;
+	private int totalSeats;
 
 	public int getId() {
 		return id;
@@ -109,6 +110,14 @@ public class FlightSchedule {
 
 	public void setAvailability(int availability) {
 		this.availability = availability;
+	}
+
+	public int getTotalSeats() {
+		return totalSeats;
+	}
+
+	public void setTotalSeats(int totalSeats) {
+		this.totalSeats = totalSeats;
 	}
 
 }

@@ -54,9 +54,9 @@ public class BookingService {
 	return bookedTicket;
 	}
 
-	public FlightTicket cancelTicket(FlightTicket ticket) {
+	public FlightTicket cancelTicket(Ticket ticket) {
 		FlightTicket cancelledTicket = new FlightTicket();
-		Ticket ticketDetails = ticket.getTicket(); 
+		Ticket ticketDetails = ticket; 
 		ticketDetails.setStatus("Cancelled");
 		Ticket flightTicket = ticketRepo.save(ticketDetails);
 		cancelledTicket.setTicket(flightTicket);
@@ -68,8 +68,12 @@ public class BookingService {
 		return ticketRepo.findById(ticketId).get();
 	}
 
-	public Ticket getTicketByEmail(String email) {
+	public List<Ticket> getTicketByEmail(String email) {
 		return ticketRepo.findByEmail(email);
+	}
+	
+	public List<Ticket> getTicketHistory() {
+		return ticketRepo.findAll();
 	}
 	
 	public List<Passenger> getPassengerByTicketId(String ticketId) {

@@ -33,7 +33,7 @@ public class BookingController {
 	}
 	
 	@PutMapping("/ticket/cancel")
-	public FlightTicket cancelTicket(@RequestBody FlightTicket ticket ) {
+	public FlightTicket cancelTicket(@RequestBody Ticket ticket ) {
 		return bookingService.cancelTicket(ticket);
 	}
 	
@@ -43,8 +43,13 @@ public class BookingController {
 	}
 	
 	@GetMapping("/ticket/email/{email}")
-	public Ticket getTicketByEmail(@PathVariable String email ) {
+	public List<Ticket> getTicketByEmail(@PathVariable String email ) {
 		return bookingService.getTicketByEmail(email);
+	}
+	
+	@GetMapping("/ticket/all")
+	public List<Ticket> getTicketHistory() {
+		return bookingService.getTicketHistory();
 	}
 
 }

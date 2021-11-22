@@ -13,18 +13,20 @@ export class BookingHistoryComponent implements OnInit {
 
   searchForm: FormGroup;
 
-  constructor(private route: Router, private service: FlightServiceService) { 
-    this.searchForm =  new FormGroup({});
+  constructor(private route: Router, private service: FlightServiceService) {
+    this.searchForm = new FormGroup({});
   }
 
   ngOnInit(): void {
-    //this.getBookingHistory();
+    if (localStorage.hasOwnProperty("ticketId")) {
+      this.getBookingHistoryById(localStorage.getItem("ticketId"));
+    }
   }
 
   ticketHistory: any;
   ticketData: any;
 
-  search(email:string){
+  search(email: string) {
     console.log("SUcess");
   }
   // Search and Retrive Data:
@@ -35,9 +37,9 @@ export class BookingHistoryComponent implements OnInit {
       console.log(this.ticketHistory);
     });
   }
-  
-  getBookingHistoryById(ticketId: string) {
-    this.ticketHistory=[];
+
+  getBookingHistoryById(ticketId: any) {
+    this.ticketHistory = [];
     this.service.getBookedFlightDetailsById(ticketId).subscribe(data => {
       this.ticketData = data;
       console.log(this.ticketData);
@@ -51,18 +53,18 @@ export class BookingHistoryComponent implements OnInit {
     console.log(ticket);
     this.msgs.push(''); this.msgs.push('');
     this.msgs.push(''); this.msgs.push('');
-    this.msgs.push('PNR Number '+ticket.ticketId);
+    this.msgs.push('PNR Number ' + ticket.ticketId);
     this.msgs.push('Booked by Name : ' + ticket.userName);
     this.msgs.push('Email Id : ' + ticket.email);
-    this.msgs.push(' Flight Name :'+ticket.flightName);
+    this.msgs.push(' Flight Name :' + ticket.flightName);
     this.msgs.push('Total seats booked : ' + ticket.totalSeats);
     this.msgs.push('Source : ' + ticket.startPlace);
     this.msgs.push('Destination : ' + ticket.endPlace)
     this.msgs.push('OnBoarding Time : ' + ticket.startTime)
     this.msgs.push('Arrival Time : ' + ticket.endTime)
-    if(ticket.status === 'Active'){
+    if (ticket.status === 'Active') {
       this.msgs.push('Ticket Status :  Completed')
-    }else{
+    } else {
       this.msgs.push('Ticket Status :  Cancelled')
     }
     this.msgs.push('');
@@ -75,7 +77,7 @@ export class BookingHistoryComponent implements OnInit {
 
   }
 
-  cancel(ticket: any){
+  cancel(ticket: any) {
     this.service.cancelFlight(ticket).subscribe(data => {
       console.log("DELETE/CANCEL TICKET");
       console.log(ticket);
