@@ -1,0 +1,51 @@
+<!-- <div class="mainContainer">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav innerNavBar">
+        <a class="nav-item nav-link" routerLink="manage-flight"><span
+          class="sr-only">(current)</span>Add Schedules</a>
+        <a class="nav-item nav-link" routerLink="add-airport">Add Airport</a>
+        <a class="nav-item nav-link active" routerLink="add-airline">Add Airline</a>
+        
+        <a class="nav-item nav-link" routerLink="manage-scheduled-flight">Manage Scheduled Flights</a>
+        <a class="nav-item nav-link" routerLink="user-reports">User-Bookings</a>
+        <a class="nav-item nav-link" (click)="logout()"> LogOut </a>
+      </div>
+    </div>
+  </nav>
+</div> -->
+
+
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" >Welcome User</a></mdb-navbar-brand>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="manage-flight"><i class="fa fa-plane"></i>Add Schedules<span class="sr-only">(current)</span></a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="add-airport"><i class="fa fa-plane"></i>Add Airport</a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="add-airline"><i class="fa fa-plane"></i>Add Airline</a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="manage-scheduled-flight"><i class="fa fa-plane"></i>Manage Scheduled Flights</a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="booking-history"><i class="fa fa-plane"></i>Booking Details</a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect (click)="logout()"><i class="fa fa-sign-out"></i>Log Out</a>
+      </li>
+
+
+    </ul>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

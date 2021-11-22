@@ -1,0 +1,86 @@
+<div class="myFormBody">
+    <div class="myformContainer">
+        <label style="text-align: center; font-size: x-large">Add New Airline</label>
+        <h4 *ngIf="isAdded" style="color: green; font-weight: bolder; font-size: larger; padding: 8px;">New Flight
+            Successfully Added</h4>
+        <h4 *ngIf="!!errorText" style="color: red; padding: 5px; font-size: larger; font-weight: bold;">{{errorText}}
+        </h4>
+        <!-- <form [formGroup]="addAirlineForm" (ngSubmit)="submitAddFlight()">
+            <div style="margin-top: 10px;"> -->
+                <!--AirLine Name-->
+                <!-- <div class="element">
+                    <label style="padding-right: 10px;">AirLine Name</label>
+                    <input type="text" formControlName="airlineName" placeholder="Enter Airline Name">
+                </div> -->
+                <!--Upload Logo-->
+                <!-- <div class="element">
+                    <label style="padding-right: 10px;">Airline Logo URL</label>
+                    <input type="text" formControlName="airlineLogo" placeholder="Enter Logo URL">
+                </div> -->
+                <!--Contact Number-->
+                <!-- <div class="element">
+                    <label style="padding-right: 10px;">Contact Number</label>
+                    <input type="text" formControlName="airlineContactNumber" placeholder="Enter Contact Number">
+                </div> -->
+                <!--Contact Address-->
+                <!-- <div class="element" style="padding-bottom: 10px;">
+                    <label style="padding-right: 10px;">Contact Address</label>
+                    <input formControlName="airLineAddress" type="text" style="margin-left: 10px;"
+                        placeholder="Enter Contact Address">
+                </div> -->
+<!-- Horizontal material form -->
+<form [formGroup]="addAirlineForm" (ngSubmit)="submitAddFlight()">
+    <div style="margin-top: 10px;">
+  <!-- Grid row -->
+  <div class="form-group row">
+    <!-- Material input -->
+    <label for="inputAirLine" class="col-sm-2 col-form-label">AirLine Name</label>
+    <div class="col-sm-10">
+      <div class="md-form mt-0">
+        <input mdbInput class="form-control" formControlName="name" placeholder="Enter Airline Name">
+      </div>
+    </div>
+  </div>
+  <!-- Grid row -->
+
+    <!-- Grid row -->
+    <div class="form-group row">
+        <!-- Material input -->
+        <label for="inputContactNumber" class="col-sm-2 col-form-label">Contact Number</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput class="form-control" formControlName="contactNumber" placeholder="Enter Contact Number">
+          </div>
+        </div>
+      </div>
+      <!-- Grid row -->
+
+          <!-- Grid row -->
+    <div class="form-group row">
+        <!-- Material input -->
+        <label for="inputAddress" class="col-sm-2 col-form-label">Contact Address</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput class="form-control" formControlName="contactAddress" placeholder="Enter Contact Address">
+          </div>
+        </div>
+      </div>
+      <!-- Grid row -->
+
+  <!-- Grid row -->
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" mdbBtn color="primary" [disabled]="addAirlineForm.invalid">Submit</button>
+      <button id="reset_button" type="reset" mdbBtn color="primary">Reset</button>
+    </div>
+  </div>
+  </div>
+  <!-- Grid row -->
+</form>
+<!-- Horizontal material form -->
+                <!-- <br>
+                <button type="submit" class="btn btn-info subColor" [disabled]="addAirlineForm.invalid">Submit</button>
+            </div>
+        </form> -->
+    </div>
+</div>

@@ -1,0 +1,21 @@
+.myformContainer{
+    box-shadow: none;
+}
+
+input::placeholder {
+    font-weight: bold;
+    font-style: oblique;
+    color: rgb(90, 83, 83);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
+  .form-control{
+      color: white;
+      font-weight: bolder;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  #reset_button{
+    margin-left: 5px;
+    background-color: rgb(206, 100, 14);
+  }

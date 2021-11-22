@@ -1,0 +1,34 @@
+<div class="myFormBody">
+    <div class="myformContainer">
+        <table class="table">
+            <thead>
+                <tr style="font-size: medium;" >
+                    <th>S.No</th>
+                    <th>Airline Name</th>
+                    <th>Flight Name</th>
+                    <th>User Name</th>
+                    <th>Boarding Date</th>
+                    <th>Boarding Time</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>PNR Number</th>
+                    <th>Ticket Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ticket of ticketHistory; let i=index" [class.isCancelled]="ticket.status==='Cancelled'" [class.isCompleted]="ticket.status==='Active'">
+                    <td>{{i+1}}</td>
+                    <td>{{ticket.airlineName}}</td>
+                    <td>{{ticket.flightName}}</td>
+                    <td>{{ticket.userName}}</td>
+                    <td>{{ticket.journeyDate}}</td>
+                    <td>{{ticket.startTime}}</td>
+                    <td>{{ticket.startPlace}}</td>
+                    <td>{{ticket.endPlace}}</td>
+                    <td>{{ticket.ticketId}}</td>
+                    <td>{{ticket.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

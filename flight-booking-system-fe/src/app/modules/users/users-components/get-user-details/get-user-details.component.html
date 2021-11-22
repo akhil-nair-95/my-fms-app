@@ -1,0 +1,90 @@
+<b>Update the details for ticket booking </b>
+
+<form [formGroup]="ticketDetails" (ngSubmit)="finalSubmit()">
+<mat-card>
+  <mat-form-field appearance="outline">
+    <mat-label>User Name</mat-label>
+    <input matInput type="text" formControlName="userName">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>email</mat-label>
+    <input matInput type="text" formControlName="email">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>No of Passengers</mat-label>
+    <input matInput type="number" formControlName="totalSeats"  [(ngModel)]="inputValue" (change)="onChangeEvent($event)">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Total cost</mat-label>
+    <input readonly  matInput type="number" [(ngModel)]="totalCost" formControlName="totalCost">
+  </mat-form-field>
+<div>
+  <mat-card>
+    <b>Please provide the Passenger details </b>
+  <form [formGroup]="passengerForm" > 
+    <mat-form-field appearance="outline">
+      <mat-label>Seat No</mat-label>
+      <input matInput type="number" formControlName="seatNo">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Sex</mat-label>
+      <mat-select formControlName="sex">
+        <mat-option value="male">Male</mat-option>
+        <mat-option value="female">Female</mat-option>
+        <mat-option value="others">Others</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" formControlName="age">
+    </mat-form-field>
+      <mat-radio-group formControlName="meal">
+        <mat-radio-button value="veg" style ="padding-left: 2%;">Veg</mat-radio-button>
+        <mat-radio-button value="nonveg" style ="padding-left: 2%;">Non Veg</mat-radio-button>
+      </mat-radio-group>
+    <span class="add-button">
+      <button mat-raised-button color="primary" [disabled] = "passengers.length === inputValue" (click) = "addPassenger()" >Add Passenger</button>
+    </span>
+    
+  </form>
+</mat-card>
+</div>
+</mat-card> 
+
+<table mat-table [dataSource]="passengers" class="table table-striped w-auto" *ngIf="passengers.length == inputValue" >
+  <ng-container matColumnDef="seatNo">
+    <th mat-header-cell *matHeaderCellDef> Seat No </th>
+    <td mat-cell *matCellDef="let element">{{element.seatNo}}</td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element">{{element.name}}</td>
+  </ng-container>
+  <ng-container matColumnDef="sex">
+    <th mat-header-cell *matHeaderCellDef> Sex </th>
+    <td mat-cell *matCellDef="let element">{{element.sex}}</td>
+  </ng-container>
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef> Age </th>
+    <td mat-cell *matCellDef="let element">{{element.age}}</td>
+  </ng-container>
+  <ng-container matColumnDef="meal">
+    <th mat-header-cell *matHeaderCellDef> Meal </th>
+    <td mat-cell *matCellDef="let element">{{element.meal}}</td>
+  </ng-container>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<span class="submit-button">
+  <button mat-raised-button color="primary" type="submit" >Final Submit</button>
+</span>
+  
+</form>

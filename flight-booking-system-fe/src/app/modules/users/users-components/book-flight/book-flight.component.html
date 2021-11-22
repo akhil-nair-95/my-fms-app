@@ -1,0 +1,231 @@
+<!-- <div class="myFormBody">
+    <div class="myformContainer">
+        <form [formGroup]="flightSearchForm" (ngSubmit)="sendData()">
+
+            <div class="custom-control custom-radio">
+                <span class="radioo">
+                    <input type="radio" formControlName="tripType" value="oneway" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio1" style="margin-left: 10px;">One Way</label>
+                </span>
+                <span class="radioo">
+                    <input type="radio" formControlName="tripType" value="roundtrip" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio2" style="margin-left: 10px;">Round Trip</label>
+                </span>
+            </div>
+
+            <div class="place">
+                <span>
+                    <mat-form-field>
+                        <mat-label style="color: black; font-weight: bolder;">From</mat-label>
+                        <input matInput type="text" [matAutocomplete]="auto" formControlName="sourcePlace"
+                            style="color: black; font-weight: bolder;">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let airport of listOfFilteredAirportsForSourcePlace" [value]="airport">
+                                {{airport}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </span>
+
+                <span>
+                    <mat-form-field>
+                        <mat-label style="color: black; font-weight: bolder;">To</mat-label>
+                        <input matInput type="text" [matAutocomplete]="autoo" formControlName="destinationPlace"
+                            style="color: black; font-weight: bolder;">
+                        <mat-autocomplete #autoo="matAutocomplete">
+                            <mat-option *ngFor="let airport of listOfFilteredAirportsForDestinationPlace"
+                                [value]="airport">
+                                {{airport}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </span>
+
+            </div>
+
+            <div class="calander">
+                <span>
+                    <label style="margin-right: 15px;">Departure Date</label>
+                    <input type="date" class="calanderdes" formControlName="departureDate">
+                </span>
+
+                <span
+                    *ngIf="flightSearchForm.controls.tripType.value === 'roundtrip' || !flightSearchForm.controls.tripType.dirty">
+                    <label style="margin-right: 15px; margin-left: 30px;">Return Date</label>
+                    <input type="date" class="calanderdes" formControlName="returnDate">
+                </span>
+            </div>
+
+            <button type="submit" class="btn btn-info subColor" [disabled]="flightSearchForm.invalid">Submit</button>
+            <button type="button" class="btn btn-info subColor" (click)="restForm()">Reset</button>
+        </form>
+    </div>
+</div> -->
+
+
+
+<!--NEWWW-->
+
+<div *ngIf="flag" class="myFormBody">
+    <div class="myformContainer">
+        <label style="text-align: center; font-size: x-large">Find your Flight</label>
+        <form [formGroup]="flightSearchForm" (ngSubmit)="search()">
+            <div style="margin-top: 10px;">
+
+                <div class="form-group row">
+
+                    <label for="inputPlace" class="col-sm-2 col-form-label">Source</label>
+                    <div class="col-sm-10">
+                        <div class="md-form mt-0">
+                            <input mdbInput class="form-control" formControlName="startPlace"
+                                placeholder="Enter your starting place">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+
+                    <label for="inputPlace" class="col-sm-2 col-form-label">Destination</label>
+                    <div class="col-sm-10">
+                        <div class="md-form mt-0">
+                            <input mdbInput class="form-control" formControlName="endPlace"
+                                placeholder="Enter your destination">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+
+                    <label for="inputDate" class="col-sm-2 col-form-label">Contact Address</label>
+                    <div class="col-sm-10">
+                        <div class="md-form mt-0">
+                            <input type="date" mdbInput class="form-control" formControlName="journeyDate"
+                                placeholder="Journey Start Date">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" mdbBtn color="primary"
+                            [disabled]="flightSearchForm.invalid">Submit</button>
+                        <button id="reset_button" type="reset" mdbBtn color="primary">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<!-- <div class="myFormBody">
+    <div class="myformContainer">
+<table mat-table [dataSource]="response" class="mat-elevation-z8 demo-table" *ngIf="response.length>0">
+    <ng-container matColumnDef="airlineName">
+      <th mat-header-cell *matHeaderCellDef>Airline Name</th>
+      <td mat-cell *matCellDef="let element">{{element.airline}}</td>
+    </ng-container>
+    <ng-container matColumnDef="flightName">
+      <th mat-header-cell *matHeaderCellDef>Flight Name</th>
+      <td mat-cell *matCellDef="let element">{{element.flightName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="startPlace">
+      <th mat-header-cell *matHeaderCellDef>Start Place</th>
+      <td mat-cell *matCellDef="let element">{{element.startPlace}}</td>
+    </ng-container>
+    <ng-container matColumnDef="endPlace">
+      <th mat-header-cell *matHeaderCellDef>End Place</th>
+      <td mat-cell *matCellDef="let element">{{element.endPlace}}</td>
+    </ng-container>
+    <ng-container matColumnDef="startTime">
+      <th mat-header-cell *matHeaderCellDef>Start Time</th>
+      <td mat-cell *matCellDef="let element">{{element.startTime}}</td>
+    </ng-container>
+    <ng-container matColumnDef="endTime">
+      <th mat-header-cell *matHeaderCellDef>End Time</th>
+      <td mat-cell *matCellDef="let element">{{element.endTime}}</td>
+    </ng-container>
+    <ng-container matColumnDef="journeyDate">
+      <th mat-header-cell *matHeaderCellDef>Journey Date</th>
+      <td mat-cell *matCellDef="let element">{{element.startDate}}</td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let element">{{element.price}}</td>
+    </ng-container>
+    <ng-container matColumnDef="availability">
+      <th mat-header-cell *matHeaderCellDef>Availability</th>
+      <td mat-cell *matCellDef="let element">{{element.availability}}</td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectedJourney(row)"></tr>
+  </table>
+  </div>
+  </div> -->
+
+
+
+  <div class="myFormBody">
+    <div class="myformContainer">
+        <table [dataSource]="response" class="table table-striped table-responsive-md btn-table" *ngIf="response.length>0">
+
+            <thead>
+                <tr style="font-size: medium;">
+                    <th>S.No</th>
+                    <th>Airline Name</th>
+                    <th>Flight Name</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Depature Date</th>
+                    <th>Depature Time</th>
+                    <th>Arrival Date</th>
+                    <th>Arrival Time</th>
+                    <th>Ticket Cost (₹)</th>
+                    <th>Total Seats</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let flight of response; let i=index"
+                    [class.highlighter]="!flight.availability" [class.available]="flight.availability">
+                    <td>{{i+1}}</td>
+                    <td>{{flight.airline}}</td>
+                    <td>{{flight.flightName}}</td>
+                    <td>{{flight.startPlace}}</td>
+                    <td>{{flight.endPlace}}</td>
+                    <td>{{flight.startDate}}</td>
+                    <td>{{flight.startTime}}</td>
+                    <td>{{flight.endDate}}</td>
+                    <td>{{flight.endTime}}</td>
+                    <td>{{flight.price}}</td>
+                    <td>{{flight.totalSeats}}</td>
+                    <td *ngIf="flight.availability">Scheduled</td>
+                    <td *ngIf="!flight.availability">Cancelled</td>
+                    <td *ngIf="!flight.availability">
+                        
+                        <button mdbBtn size="sm" type="button" class="m-0" mdbWavesEffect 
+                        [disabled]="!flight.availability"
+                                [class.highlighterButton]="!flight.availability">NA</button></td>
+                    <td *ngIf="flight.availability">
+                        
+                    <button mdbBtn size="sm" type="button" class="m-0" mdbWavesEffect 
+                    [disabled]="!flight.availability"
+                            [class.highlighterButton]="!flight.availability" (click)="selectedJourney(flight)">Book</button></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+
+<div class="myFormBody">
+    <div class="myformContainer">
+        <label style="text-align: center; font-size: x-large">Add New Airport</label>
+        <h4 *ngIf="isAdded" style="color: green; font-weight: bolder; font-size: larger; padding: 8px;">New Airport
+            Successfully Added</h4>
+        <h4 *ngIf="!!errorText" style="color: red; padding: 5px; font-size: larger; font-weight: bold;">{{errorText}}
+        </h4>
+
+<form [formGroup]="addAirportForm" (ngSubmit)="submitAddAirport()">
+    <div style="margin-top: 10px;">
+
+        <div class="form-group row">
+
+            <label for="inputAirporte" class="col-sm-2 col-form-label">Airport Name</label>
+            <div class="col-sm-10">
+                <div class="md-form mt-0">
+                    <input mdbInput class="form-control" formControlName="airportName" placeholder="Enter Airport Name">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+
+            <label for="inputAirportPlace" class="col-sm-2 col-form-label">Airport Location</label>
+            <div class="col-sm-10">
+                <div class="md-form mt-0">
+                    <input mdbInput class="form-control" formControlName="airportLocation"
+                        placeholder="Enter Airport Location">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" mdbBtn color="primary" [disabled]="addAirportForm.invalid">Submit</button>
+                <button id="reset_button" type="reset" mdbBtn color="primary">Reset</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+</div>
+</div>

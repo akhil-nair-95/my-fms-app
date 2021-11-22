@@ -1,0 +1,60 @@
+<!-- <div class="mainContainer">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav innerNavBar">
+        <label style="color: white; font-size: large; margin-left: -150px;" >Welcome User &nbsp;</label> <label style="color: white; font-size: large;" >{{name}}</label>
+        <a class="nav-item nav-link active" routerLink="book-flight" style="margin-left: 100px;">Book Flight <span
+            class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" routerLink="booking-history">Booking History</a>
+        <a class="nav-item nav-link" routerLink="manage-booking">Manage Bookings</a>
+        <a class="nav-item nav-link" (click)="logout()">LogOut</a>
+      </div>
+    </div>
+  </nav>
+</div> -->
+
+
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" >Welcome User</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect  routerLink="book-flight">Book Flight<span class="sr-only">(current)</span></a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="booking-history">Booking History</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="manage-booking">Manage Bookings</a>
+      </li> -->
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect (click)="logout()">Log out</a>
+      </li>
+
+
+    </ul>
+    <!-- Links -->
+
+    <!-- Search form -->
+    <!-- <form class="form-inline waves-light" mdbWavesEffect>
+      <div class="md-form my-0">
+        <input #pnr class="form-control mr-sm-2" type="text" placeholder="Enter PNR">
+        <i class="fa fa-search" style="cursor: pointer;" (click)="search(pnr.value)"></i>
+      </div>
+        <div class="md-form my-0"> 
+          <input #email class="form-control mr-sm-2" type="text" placeholder="Enter email">
+          <i class="fa fa-search" style="cursor: pointer;" (click)="search(email.value)"></i>
+      </div>
+    </form> -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

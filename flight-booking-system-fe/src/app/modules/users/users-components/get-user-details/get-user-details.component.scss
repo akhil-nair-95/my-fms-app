@@ -1,0 +1,95 @@
+.myformContainer{
+    box-shadow: none;
+        border: 1px solid black;
+        padding: 20px;
+}
+
+.myFormBody {
+    position: relative;
+    top: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    text-align: center;
+}
+.passenger{
+  border: 1px solid black; 
+  padding: 5px;
+  background-color: #77ACF1;
+  margin-top: 4px;
+}
+.move{
+    margin-left: 5px;
+    padding: 3px;
+}
+.subColor{
+    background-color: #0061A8;
+    margin-top: 4px;
+    border-radius: 10px 10px;
+    color: white;
+    box-shadow: 10px 20px 50px blue;
+}
+
+
+//////
+
+.myFormBody {
+    position: relative;
+    top: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.myformContainer{
+    box-shadow: none;
+        border: 1px solid black;
+        padding: 50px;
+}
+
+.highlighter{
+    border: 1px solid black;
+    background-color: rgb(219, 37, 37) !important;
+    color: white;
+    font-size: medium;
+}
+
+button{
+    padding: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 15px 15px 15px 15px;
+    background-color: red;
+    font-size: small;
+    color: white;
+    box-shadow: 10px 20px 50px white;
+}
+
+.highlighterButton{
+    background-color: black;
+    color: white;
+}
+
+.available{
+    background-color: #13df6f;
+    color: white;
+    font-size: medium;
+    border: 1px solid black;
+}
+
+th{
+    text-align: center;
+    font-weight: bolder;
+    // color:whitesmoke;
+}
+
+td{
+    text-align: center;
+}
+
+ thead{
+    border: black;
+    border-style: double;
+    color: rgb(100, 64, 9);
+    font-weight: bolder;
+    background-color: paleturquoise;
+}
+

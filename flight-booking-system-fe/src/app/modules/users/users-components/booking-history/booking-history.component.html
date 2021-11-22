@@ -1,0 +1,66 @@
+<div class="myFormBody">
+    <div class="myformContainer">
+
+<!--NEW-->
+<form [formGroup]="searchForm" class="form-inline waves-light" mdbWavesEffect>
+    <div class="md-form my-0">
+      <input #pnr class="form-control mr-sm-2" type="text" placeholder="Enter PNR">
+      <i class="fa fa-search" style="cursor: pointer;" (click)="getBookingHistoryById(pnr.value)"></i>
+    </div>
+      <div class="md-form my-0"> 
+        <input #email class="form-control mr-sm-2" type="text" placeholder="Enter email">
+        <i class="fa fa-search" style="cursor: pointer;" (click)="getBookingHistory(email.value)"></i>
+    </div>
+  </form>
+<!--NEW-->
+
+        <table class="table">
+            <thead>
+                <tr style="font-size: medium;" >
+                    <th>S.No</th>
+                    <th>Airline Name</th>
+                    <th>Flight Name</th>
+                    <th>Boarding Date</th>
+                    <th>Boarding Time</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>PNR Number</th>
+                    <th>Ticket Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ticket of ticketHistory; let i=index" style="font-size: medium;">
+                    <td>{{i+1}}</td>
+                    <td>{{ticket.airlineName}}</td>
+                    <td>{{ticket.flightName}}</td>
+                    <td>{{ticket.journeyDate}}</td>
+                    <td>{{ticket.startTime}}</td>
+                    <td>{{ticket.startPlace}}</td>
+                    <td>{{ticket.endPlace}}</td>
+                    <td>{{ticket.ticketId}}</td>
+                    <td>{{ticket.status}}</td>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" (click)="download(ticket)">Download</button></td>
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr *ngIf="!!ticketData" style="font-size: medium;">
+                    <td>1</td>
+                    <td>{{ticketData.airlineName}}</td>
+                    <td>{{ticketData.flightName}}</td>
+                    <td>{{ticketData.journeyDate}}</td>
+                    <td>{{ticketData.startTime}}</td>
+                    <td>{{ticketData.startPlace}}</td>
+                    <td>{{ticketData.endPlace}}</td>
+                    <td>{{ticketData.ticketId}}</td>
+                    <td>{{ticketData.status}}</td>
+                    <td><button *ngIf="ticketData.status === 'Active'" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" (click)="cancel(ticketData)">Cancel</button></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

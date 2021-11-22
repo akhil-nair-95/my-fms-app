@@ -1,0 +1,44 @@
+.subColor{
+    background-color: #0061A8;
+    border-radius: 10px 10px;
+    color: white;
+    box-shadow: 10px 20px 50px blue;
+}
+
+.myFormBody {
+    position: relative;
+    top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.myformContainer{
+    box-shadow: none;
+        border: 1px solid black;
+        padding: 30px;
+}
+
+.subColor{
+    background-color: #0061A8;
+    border-radius: 10px 10px;
+    color: white;
+    box-shadow: 10px 20px 50px blue;
+    padding: 5px;
+}
+
+tbody{
+    background-color: #77ACF1;
+    color: white;
+    font-size: medium;
+}
+
+th, td{
+    text-align: center;
+}
+.highlighter{
+    border: 1px solid black;
+    background-color: red;
+    color: white;
+    font-size: medium;
+}
