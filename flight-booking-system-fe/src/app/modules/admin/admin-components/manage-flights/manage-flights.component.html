@@ -1,64 +1,7 @@
-<!-- <div class="myFormBody">
-    <div class="myformContainer">
-        <h3 *ngIf="isAdded" style="color: green; font-weight: 800;">Flight Scheduled</h3>
-        <h3 *ngIf="isAlreadyAvailable" style="color: red; font-weight: 800;">Discount Already Available</h3>
-        <form [formGroup]="flightManageForm">
-
-            <div class="element" style="padding: 5px;">
-                <label style="padding-right: 20px;">Airline Name</label>
-                <select formControlName="airlineName" style="padding: 2px;">
-                    <option [ngValue]="null" disabled selected >Choose Airline</option>
-                    <option *ngFor="let airline of airlineList" [ngValue]="airline">
-                        {{airline.name}}
-                    </option>
-                </select>
-            </div>
-
-            <div class="element">
-                <label style="padding-right: 20px;">Flight Number</label>
-                <input type="text" formControlName="flightNumber" placeholder="Enter Flight Number">
-            </div>
-            <div class="element">
-                <label style="padding-right: 20px;">From</label>
-                <input type="text" formControlName="from" placeholder="Enter Source Location">
-            </div>
-            <div class="element">
-                <label style="padding-right: 20px;">To</label>
-                <input type="text" formControlName="to" placeholder="Enter Destination Location">
-            </div>
-            <div class="element">
-                <label style="padding-right: 20px;">Ticket Price (₹)</label>
-                <input type="text" formControlName="price" placeholder="Enter Price">
-            </div>
-            <div class="element">
-                <label style="padding-right: 20px;">Depature Date</label>
-                <input type="date" formControlName="arivalDate" placeholder="Enter Depature Date">
-            </div>
-            <div class="element">
-                <label style="padding-right: 20px;">Depature Time</label>
-                <input type="text" formControlName="dTime" placeholder="Enter Depature Time">
-            </div>
-            <div class="element">
-                <label style="padding-right: 20px;">Arrival Date</label>
-                <input type="date" formControlName="depatureDate" placeholder="Enter Arrival Date">
-            </div>
-            <div class="element">
-                <label style="padding-right: 20px;">Arrival Time</label>
-                <input type="text" formControlName="aTime" placeholder="Enter Arrival Time">
-            </div>
-            <div class="element">
-                <label style="padding-right: 20px;">Total Seats</label>
-                <input type="number" required="required" min="20" max="100" formControlName="totalSeats"
-                    placeholder="Seats">
-            </div>
-            <button type="submit" class="btn btn-info subColor" [disabled]="flightManageForm.invalid"
-                (click)="SheduleFlight()">Submit</button>
-        </form>
-    </div>
-</div> -->
 
 <div class="myFormBody">
     <div class="myformContainer">
+        <label style="text-align: center; font-size: x-large;">Add New Flight Schedule</label>
         <h3 *ngIf="isAdded" style="color: green; font-weight: 800;">Flight Scheduled</h3>
         <h3 *ngIf="isAlreadyAvailable" style="color: red; font-weight: 800;">Already Scheduled</h3>
         <!-- Horizontal material form -->
@@ -66,27 +9,17 @@
             <div style="margin-top: 10px;">
                 <!-- Grid row -->
                 <div class="form-group row">
-                    <!-- Material input -->
-                    <label for="inputAirLine" class="col-sm-2 col-form-label">AirLine Name</label>
-                    <div class="col-sm-10">
+                    <div class="col">
                         <div class="md-form mt-0">
-                            <!-- <input mdbInput class="form-control" formControlName="airline"
-                                placeholder="Enter Airline Name"> -->
                                 <select class="browser-default custom-select" formControlName="airline">
-                                    <option selected>Choose AirLine</option>
+                                    <option value="" selected disabled>Choose AirLine</option>
                                     <option *ngFor="let airline of airlineList" [ngValue]="airline.name">
                                         {{airline.name}}
                                     </option>
                                 </select>
                         </div>
                     </div>
-                </div>
-                <!-- Grid row -->
-
-                <!-- Grid row -->
-                <div class="form-group row">
-                    <label for="inputFlightName" class="col-sm-2 col-form-label">Flight Name</label>
-                    <div class="col-sm-10">
+                    <div class="col">
                         <div class="md-form mt-0">
                             <input mdbInput class="form-control" formControlName="flightName"
                                 placeholder="Enter Flight Name">
@@ -95,10 +28,22 @@
                 </div>
                 <div class="form-group row">
                     <div class="col">
-                    <input mdbInput class="form-control" formControlName="startPlace" placeholder="Start Place">
+                    <!-- <input mdbInput class="form-control" formControlName="startPlace" placeholder="Start Place"> -->
+                    <select class="browser-default custom-select" formControlName="startPlace">
+                        <option value="" selected disabled>Choose your start place</option>
+                        <option *ngFor="let airport of airportList" [ngValue]="airport.airportName">
+                            {{airport.airportName}}, {{airport.airportLocation}}
+                        </option>
+                    </select>                    
                     </div>
                     <div class="col">
-                        <input mdbInput class="form-control" formControlName="endPlace" placeholder="End Place">
+                        <!-- <input mdbInput class="form-control" formControlName="endPlace" placeholder="End Place"> -->
+                        <select class="browser-default custom-select" formControlName="endPlace">
+                            <option value="" selected disabled>Choose your start place</option>
+                            <option *ngFor="let airport of airportList" [ngValue]="airport.airportName">
+                                {{airport.airportName}}, {{airport.airportLocation}}
+                            </option>
+                        </select>                         
                     </div>
                 </div>
 

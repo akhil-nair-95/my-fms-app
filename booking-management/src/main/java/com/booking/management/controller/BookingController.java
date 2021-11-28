@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.booking.management.models.FlightTicket;
+import com.booking.management.models.Response;
 import com.booking.management.models.Schedule;
 import com.booking.management.models.SearchRequest;
 import com.booking.management.models.Ticket;
@@ -50,6 +51,16 @@ public class BookingController {
 	@GetMapping("/ticket/all")
 	public List<Ticket> getTicketHistory() {
 		return bookingService.getTicketHistory();
+	}
+	
+	@GetMapping("/getTicketId/{id}")
+	public Response viewAirport(@PathVariable("id") String scheduleId) throws Exception {
+		System.out.println("Find ticket id for scheduleId: " + scheduleId);
+		Response response = new Response();
+		response.setResponseCode("200");
+		response.setResponseStatus("Success");
+		response.setTicketId(bookingService.getTicketId(scheduleId));
+		return response;
 	}
 
 }

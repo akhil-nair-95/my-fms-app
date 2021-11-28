@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AirlineDetails } from 'src/app/model/airline-details';
+import { AirportDetails } from 'src/app/model/airport-details';
 import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
@@ -15,6 +16,8 @@ export class ManageFlightsComponent implements OnInit {
   //AirLineList:
   airlineList: AirlineDetails[] = [];
 
+  airportList: AirportDetails[] = [];
+
   //Form Group:
   flightManageForm: FormGroup = new FormGroup({});
 
@@ -23,6 +26,7 @@ export class ManageFlightsComponent implements OnInit {
   ngOnInit(): void {
     this.initialize();
     this.addAirlineList();
+    this.getAirportList();
   }
 
   initialize() {
@@ -64,6 +68,14 @@ export class ManageFlightsComponent implements OnInit {
       this.isAlreadyAvailable = true;
       this.isAdded = false;
     }))
+  }
+
+  getAirportList(){
+    this.service.getListOfAllAirports().subscribe(data => {
+      if(!!data){
+        this.airportList = data;
+      }
+    })
   }
 
 }

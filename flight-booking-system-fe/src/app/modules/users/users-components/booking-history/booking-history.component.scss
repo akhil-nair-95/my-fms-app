@@ -1,9 +1,9 @@
-.subColor{
-    background-color: #0061A8;
-    border-radius: 10px 10px;
-    color: white;
-    box-shadow: 10px 20px 50px blue;
-}
+// .subColor{
+//     background-color: #0061A8;
+//     border-radius: 10px 10px;
+//     color: white;
+//     box-shadow: 10px 20px 50px blue;
+// }
 
 .myFormBody {
     position: relative;
@@ -19,26 +19,65 @@
         padding: 30px;
 }
 
-.subColor{
-    background-color: #0061A8;
-    border-radius: 10px 10px;
-    color: white;
-    box-shadow: 10px 20px 50px blue;
-    padding: 5px;
-}
+// .subColor{
+//     background-color: #0061A8;
+//     border-radius: 10px 10px;
+//     color: white;
+//     box-shadow: 10px 20px 50px blue;
+//     padding: 5px;
+// }
 
 tbody{
     background-color: #77ACF1;
     color: white;
-    font-size: medium;
+    font-size: small;
 }
 
 th, td{
     text-align: center;
+    font-weight: normal;
+    font-size: small;
+    overflow: hidden; 
+    white-space: nowrap;
 }
 .highlighter{
     border: 1px solid black;
     background-color: red;
     color: white;
     font-size: medium;
+}
+
+table.table-bordered > thead > tr > th{
+    border:black;
+    border: 1px;
+    border-style: double;
+}
+
+table.table-bordered > tbody > tr > td{
+    border:black;
+    border: 1px;
+    border-style: double;
+}
+
+table.table-bordered{
+    border: 1px black;
+    margin-top: 20px;
+    border-style: double;
+}
+
+thead{
+    border: black;
+    border-style: double;
+    color: rgb(100, 64, 9);
+    font-weight: bolder;
+    background-color: paleturquoise;
+}
+
+.second{
+    margin-left: 12px;
+}
+
+.form-control, .second{
+    font-weight: bold;
+    text-align: center;
 }

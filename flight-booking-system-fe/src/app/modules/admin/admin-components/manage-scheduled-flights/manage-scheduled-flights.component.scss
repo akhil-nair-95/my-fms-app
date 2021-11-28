@@ -13,7 +13,7 @@
 
 .highlighter{
     border: 1px solid black;
-    background-color: rgb(219, 37, 37) !important;
+    background-color: orange !important;
     color: white;
     font-size: medium;
 }
@@ -43,18 +43,49 @@ button{
 
 th{
     text-align: center;
-    font-weight: bolder;
-    // color:whitesmoke;
+    font-weight: normal;
+    overflow: hidden; 
+    font-size: small;
+    white-space: nowrap;
 }
 
 td{
     text-align: center;
+    font-weight: normal;
+    font-size: small;
+    overflow: hidden; 
+    white-space: nowrap;
 }
 
  thead{
-    border: black;
-    border-style: double;
+    // border: black;
+    // border-style: double;
     color: rgb(100, 64, 9);
     font-weight: bolder;
     background-color: paleturquoise;
+}
+
+.unblockButton{
+    border: 1px solid black;
+    background-color: rgb(201, 231, 29) !important;
+    color: black;
+    font-size: medium;
+}
+
+table.table-bordered > thead > tr > th{
+    border:black;
+    border: 1px;
+    border-style: double;
+}
+
+table.table-bordered > tbody > tr > td{
+    border:black;
+    border: 1px;
+    border-style: double;
+}
+
+table.table-bordered{
+    border: 1px black;
+    margin-top: 20px;
+    border-style: double;
 }

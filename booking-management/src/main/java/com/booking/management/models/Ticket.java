@@ -44,6 +44,8 @@ public class Ticket {
 	@Column(name="total_cost")
 	private float totalCost;
 	private String status;
+	@Column(name="schedule_id")
+	private int scheduleId;
 	
 	public String getTicketId() {
 		return ticketId;
@@ -124,6 +126,12 @@ public class Ticket {
 		this.status = status;
 	}
 	
+	public int getScheduleId() {
+		return scheduleId;
+	}
+	public void setScheduleId(int scheduleId) {
+		this.scheduleId = scheduleId;
+	}
 	public Ticket(String ticketId, String airlineName, String flightName, String startPlace, String endPlace,
 			String startTime, String endTime, String userName, String email, String journeyDate, int totalSeats,
 			float totalCost, String status) {
@@ -156,7 +164,7 @@ public class Ticket {
 		return "Ticket [ticketId=" + ticketId + ", airlineName=" + airlineName + ", flightName=" + flightName
 				+ ", startPlace=" + startPlace + ", endPlace=" + endPlace + ", startTime=" + startTime + ", endTime="
 				+ endTime + ", userName=" + userName + ", email=" + email + ", journeyDate=" + journeyDate
-				+ ", totalSeats=" + totalSeats + ", totalCost=" + totalCost + ", status=" + status
-				+ "]";
+				+ ", totalSeats=" + totalSeats + ", totalCost=" + totalCost + ", status=" + status + ", scheduleId="
+				+ scheduleId + "]";
 	}
 }

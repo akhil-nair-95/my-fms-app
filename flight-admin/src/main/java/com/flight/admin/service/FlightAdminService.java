@@ -132,14 +132,25 @@ public class FlightAdminService {
 		HttpEntity<FlightSchedule> req = new HttpEntity<>(flightSchedule, requestHeaders);
 		ResponseEntity<FlightSchedule> response = restTemplate.postForEntity("http://FLIGHT-SERVICE/schedule/cancel",
 				req, FlightSchedule.class);
-		boolean notified = notifyUser(flightSchedule.getFlightName());
+		boolean notified = notifyUser(String.valueOf(flightSchedule.getId()));
 		System.out.println("Kafka request send: " + notified);
 		return response.getBody();
 	}
+	
+	public FlightSchedule unblockFlightSchedule(FlightSchedule flightSchedule) {
+		flightSchedule.setAvailability(1);
+		HttpHeaders requestHeaders = new HttpHeaders();
+		requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+		requestHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<FlightSchedule> req = new HttpEntity<>(flightSchedule, requestHeaders);
+		ResponseEntity<FlightSchedule> response = restTemplate.postForEntity("http://FLIGHT-SERVICE/schedule/unblock",
+				req, FlightSchedule.class);
+		return response.getBody();
+	}
 
-	private boolean notifyUser(String flightName) {
+	private boolean notifyUser(String scheduleId) {
 		System.out.println(TOPIC);
-		kafkaTemplate.send(TOPIC, flightName);
+		kafkaTemplate.send(TOPIC, scheduleId);
 		return true;
 	}
 

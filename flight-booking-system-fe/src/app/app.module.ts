@@ -23,12 +23,13 @@ import { Ticket } from './service/ticket';
 import { AdminService } from './service/admin.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, ContactUsComponent, AboutComponent],
   imports: [BrowserModule,AppRoutingModule,AdminModule,UsersModule,FormsModule, BrowserAnimationsModule,MatSliderModule
     ,RouterModule, MatNativeDateModule,MatFormFieldModule,MatInputModule,MatRadioModule,MatSelectModule,HttpClientModule, 
-    MDBBootstrapModule.forRoot()],
+    MDBBootstrapModule.forRoot(), ToastrModule.forRoot()],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [FlightServiceService,Ticket,AdminService],
   bootstrap: [AppComponent]

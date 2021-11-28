@@ -7,13 +7,13 @@
         </div>
         <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
             <div class="form-group">
-                <label for="formGroupExampleInput" style="font-weight: bolder;">Email Id</label>
+                <label for="formGroupExampleInput" style="font-weight: bolder;">User Id</label>
                 <input type="text" class="form-control whiteBox" formControlName="username">
 
                 <div class="error"
                     *ngIf="loginFormGroup.controls.username.dirty && !!loginFormGroup.controls.username.errors">
-                    <div *ngIf="!!loginFormGroup.controls.username.errors.required">Email Id Cannot be invalid</div>
-                    <div *ngIf="!!loginFormGroup.controls.username.errors.pattern"> Invalid Email Id</div>
+                    <div *ngIf="!!loginFormGroup.controls.username.errors.required">User Id Cannot be invalid</div>
+                    <div *ngIf="!!loginFormGroup.controls.username.errors.pattern"> Invalid User Id</div>
                 </div>
 
             </div>

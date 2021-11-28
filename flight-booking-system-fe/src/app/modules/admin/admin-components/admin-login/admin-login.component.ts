@@ -15,9 +15,11 @@ export class AdminLoginComponent implements OnInit {
   //Login Check:
   isLoginFail: boolean = false;
 
+  myPattern = "^admin$";
+
   //Controlls:
-  emailid = new FormControl("admin", [Validators.required]);
-  pswd = new FormControl("admin", Validators.required);
+  emailid = new FormControl("", [Validators.required, Validators.pattern(this.myPattern)]);
+  pswd = new FormControl("", [Validators.required, Validators.pattern(this.myPattern)]);
 
   constructor(private formBuilder: FormBuilder, private router: Router, private service: AdminService) { }
 

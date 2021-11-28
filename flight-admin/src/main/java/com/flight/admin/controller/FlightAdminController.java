@@ -70,5 +70,11 @@ public class FlightAdminController {
 		System.out.println("Inside Cancel Schedule cntroller");
 		return adminService.cancelFlightSchedule(flightSchedule);
 	}
+	
+	@PostMapping("/schedule/unblock")
+	public FlightSchedule unblockFlightSchedule(@RequestBody FlightSchedule flightSchedule){
+		System.out.println("Inside unblock Schedule cntroller");
+		return adminService.unblockFlightSchedule(flightSchedule);
+	}
 
 }

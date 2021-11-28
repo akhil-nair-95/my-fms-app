@@ -56,6 +56,11 @@ public class FlightManagementController {
 		return flightService.updateSchedule(schedule);
 	}
 	
+	@PostMapping("/schedule/unblock")
+	public FlightSchedule unblockSchedule(@RequestBody FlightSchedule schedule) throws Exception {
+		return flightService.updateSchedule(schedule);
+	}
+	
 	@PostMapping("/search")
 	public List<FlightSchedule> searchSchedule(@RequestBody SearchRequest request) {
 		return flightService.findScheduleByDestination(request);

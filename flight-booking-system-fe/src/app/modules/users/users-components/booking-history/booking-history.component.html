@@ -8,15 +8,15 @@
       <i class="fa fa-search" style="cursor: pointer;" (click)="getBookingHistoryById(pnr.value)"></i>
     </div>
       <div class="md-form my-0"> 
-        <input #email class="form-control mr-sm-2" type="text" placeholder="Enter email">
+        <input #email class="form-control mr-sm-2 second" type="text" placeholder="Enter email">
         <i class="fa fa-search" style="cursor: pointer;" (click)="getBookingHistory(email.value)"></i>
     </div>
   </form>
 <!--NEW-->
 
-        <table class="table">
+        <table class="table table-responsive table-bordered bordered-primary" style="table-layout: fixed;">
             <thead>
-                <tr style="font-size: medium;" >
+                <tr style="font-size: small;" >
                     <th>S.No</th>
                     <th>Airline Name</th>
                     <th>Flight Name</th>

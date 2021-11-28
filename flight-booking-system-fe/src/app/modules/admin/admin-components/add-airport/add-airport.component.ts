@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
@@ -14,7 +15,7 @@ addAirportForm: FormGroup = new FormGroup({});
 isAdded: boolean = false;
 errorText: string = "";
 
-  constructor(private formBuilder: FormBuilder, private service: AdminService) { }
+  constructor(private formBuilder: FormBuilder, private service: AdminService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -31,8 +32,9 @@ errorText: string = "";
    //Logics:
    submitAddAirport() {
     console.log(this.addAirportForm.value);
-    this.service.addNewAriline(this.addAirportForm.value).subscribe(data => {
-      if (data == true) {
+    this.service.addNewAirport(this.addAirportForm.value).subscribe(data => {
+      if (data.status == 200) {
+        this.toastrService.success('Airport added successfully', 'Success');
         this.isAdded = true;
         this.errorText = ''
         this.addAirportForm.reset();        

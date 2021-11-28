@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -34,6 +35,9 @@ public class BookingService {
 	private PassengerRepository passengerRepo;
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Value("${aws.lambda.invoke.api}")
+	private String invokeURL;
 	
 	private static final String TOPIC = "kafka_topic_name";
 	
@@ -91,11 +95,12 @@ public class BookingService {
 	}
 	
 	@KafkaListener(topics = TOPIC, groupId="group_id", containerFactory = "userKafkaListenerFactory")
-	public void getDataFromKafka(String flightName) {
-		List<Ticket> flightTickets = ticketRepo.findByFlightName(flightName);
+	public void getDataFromKafka(String scheduleId) {
+		System.out.println("ScheduleId: " + Integer.valueOf(scheduleId));
+		List<Ticket> flightTickets = ticketRepo.findByScheduleId(Integer.valueOf(scheduleId));
 		List<Passenger> passengers = new ArrayList<Passenger>();
 		for (Ticket ticket : flightTickets) {
-			passengers = getPassengerByTicketId(ticket.getTicketId());
+			passengers.addAll(getPassengerByTicketId(ticket.getTicketId()));
 		}
 		if (!passengers.isEmpty()) {
 			System.out.println("***************************************************************************");
@@ -105,5 +110,35 @@ public class BookingService {
 
 		}
 	}
+
+	public String getTicketId(String scheduleId) {
+		StringBuilder sb = new StringBuilder();
+		List<Ticket> flightTickets = ticketRepo.findByScheduleId(Integer.valueOf(scheduleId));
+		List<String> ticketIds = new ArrayList<>();
+		for (Ticket ticket : flightTickets) {
+			ticketIds.add(ticket.getTicketId());
+		}
+		String sep = "";
+		for (String ticketId : ticketIds) {
+			sb.append(sep);
+			sb.append(ticketId);
+			sep = ", ";
+		}
+		System.out.println("TicketIds are: " + sb.toString());
+		return sb.toString();
+	}
+
+	/*
+	 * private void notifyUsers(String ticketId, List<Passenger> passengers, String
+	 * flightName) {
+	 * 
+	 * System.out.println("Sending request to AWS Lambda");
+	 * 
+	 * String requestParams = "?ticketId=" + ticketId;
+	 * 
+	 * ResponseEntity<String> response = restTemplate.exchange(invokeURL +
+	 * requestParams, HttpMethod.GET, null, new ParameterizedTypeReference<String>()
+	 * { }); System.out.println("Response from AWS Lambda: " + response); }
+	 */
 
 }

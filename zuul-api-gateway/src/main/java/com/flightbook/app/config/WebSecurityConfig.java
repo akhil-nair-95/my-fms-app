@@ -60,7 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/authenticate/admin/login", "/authenticate/check", "/api/v1/flight/swagger-ui.html"
 						,"/api/v1/flight/configuration/ui","/api/v1/flight/swagger-resources/**","/api/v1/flight/configuration/security",
-						"/api/v1/flight/v2/api-docs","/api/v1/flight/webjars/**", "/api/v1/flight/search", "/api/v1/booking/**").permitAll().
+						"/api/v1/flight/v2/api-docs","/api/v1/flight/webjars/**", "/api/v1/flight/search", "/api/v1/booking/**",
+						"/api/v1/airport/**").permitAll().
 				// all other requests need to be authenticated
 				anyRequest().authenticated().and().
 				// make sure we use stateless session; session won't be used to
