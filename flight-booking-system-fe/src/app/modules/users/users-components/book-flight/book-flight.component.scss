@@ -72,20 +72,34 @@ button{
     border: 1px solid black;
 }
 
-th{
+td, th{
     text-align: center;
-    font-weight: bolder;
-    // color:whitesmoke;
-}
-
-td{
-    text-align: center;
+    font-weight: normal;
+    font-size: small;
+    overflow: hidden; 
+    white-space: nowrap;
 }
 
 thead{
-    border: black;
+    color: rgb(100, 64, 9);
+    font-weight: bolder;
+    background-color: lightgoldenrodyellow;
+}
+
+table.table-bordered > thead > tr > th{
+    border:black;
+    border: 1px;
     border-style: double;
-    color: rgb(8, 5, 0) !important;
-    font-weight: normal;
-    background-color: rgb(226, 243, 69);
+}
+
+table.table-bordered > tbody > tr > td{
+    border:black;
+    border: 1px;
+    border-style: double;
+}
+
+table.table-bordered{
+    border: 1px black;
+    margin-top: 20px;
+    border-style: double;
 }

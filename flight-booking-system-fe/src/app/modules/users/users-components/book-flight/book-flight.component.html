@@ -69,10 +69,10 @@
 
   <div class="myFormBody">
     <div class="myformContainer">
-        <table [dataSource]="response" class="table table-striped table-responsive-md btn-table" *ngIf="response.length>0">
+        <table [dataSource]="response" class="table table-responsive table-bordered bordered-primary" style="table-layout: auto;" *ngIf="response.length>0">
 
             <thead>
-                <tr style="font-size: medium;">
+                <tr style="font-size: small; font-weight: bolder;">
                     <th>S.No</th>
                     <th>Airline Name</th>
                     <th>Flight Name</th>

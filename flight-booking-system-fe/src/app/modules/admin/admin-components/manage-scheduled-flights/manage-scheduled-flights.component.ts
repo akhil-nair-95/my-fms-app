@@ -38,8 +38,6 @@ export class ManageScheduledFlightsComponent implements OnInit {
         this.toastrService.success('Schedule blocked successfully', 'Success');
       }
       console.log("my log: ", data);
-      //this.ticketId = this.getTicketId(data.id);
-      //this.notified = this.notifyUser(this.ticketId);
       if(this.notified)
       this.initializeScheduledFlightDetails();
       
@@ -55,7 +53,7 @@ export class ManageScheduledFlightsComponent implements OnInit {
     this.flightService.getCancelledTicketId(id).subscribe(data => {
       this.ticketId = data.ticketId;
       console.log("Notify for ticket: ", data.ticketId);
-      this.notifyUser(data.ticketId);
+      //this.notifyUser(data.ticketId);
     });
 
     return this.ticketId;

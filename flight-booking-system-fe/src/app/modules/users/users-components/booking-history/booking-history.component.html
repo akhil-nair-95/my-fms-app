@@ -25,6 +25,7 @@
                     <th>From</th>
                     <th>To</th>
                     <th>PNR Number</th>
+                    <th>Total Seats</th>
                     <th>Ticket Status</th>
                     <th>Action</th>
                 </tr>
@@ -39,6 +40,7 @@
                     <td>{{ticket.startPlace}}</td>
                     <td>{{ticket.endPlace}}</td>
                     <td>{{ticket.ticketId}}</td>
+                    <td>{{ticket.totalSeats}}</td>
                     <td>{{ticket.status}}</td>
                     <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" (click)="download(ticket)">Download</button></td>
@@ -55,6 +57,7 @@
                     <td>{{ticketData.startPlace}}</td>
                     <td>{{ticketData.endPlace}}</td>
                     <td>{{ticketData.ticketId}}</td>
+                    <td>{{ticketData.totalSeats}}</td>
                     <td>{{ticketData.status}}</td>
                     <td><button *ngIf="ticketData.status === 'Active'" type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" (click)="cancel(ticketData)">Cancel</button></td>

@@ -6,10 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -23,6 +21,7 @@ import com.booking.management.models.SearchRequest;
 import com.booking.management.models.Ticket;
 import com.booking.management.repository.PassengerRepository;
 import com.booking.management.repository.TicketRepository;
+import com.booking.management.util.EmailSenderUtil;
 
 @Service
 public class BookingService {
@@ -35,6 +34,9 @@ public class BookingService {
 	private PassengerRepository passengerRepo;
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	private EmailSenderUtil emailSender;
 	
 	@Value("${aws.lambda.invoke.api}")
 	private String invokeURL;
@@ -100,8 +102,12 @@ public class BookingService {
 		List<Ticket> flightTickets = ticketRepo.findByScheduleId(Integer.valueOf(scheduleId));
 		List<Passenger> passengers = new ArrayList<Passenger>();
 		for (Ticket ticket : flightTickets) {
-			passengers.addAll(getPassengerByTicketId(ticket.getTicketId()));
+			List<Passenger> passengerList = getPassengerByTicketId(ticket.getTicketId());
+			sendEmail(ticket.getEmail(), ticket.getUserName(), ticket.getTicketId(), passengerList,
+					ticket.getJourneyDate());
+			passengers.addAll(passengerList);
 		}
+		System.out.println("Passengers size: " + passengers.size());
 		if (!passengers.isEmpty()) {
 			System.out.println("***************************************************************************");
 			System.out.println("The following tickets have been cancelled. Please find below the details:");
@@ -110,7 +116,70 @@ public class BookingService {
 
 		}
 	}
-
+	
+	public void sendEmail(String toEmail, String name, String ticketId, List<Passenger> passengers,
+			String journeyDate) {
+		System.out.println("Inside method to send email notification");
+		String from = "flightbooking@aero.com";
+		String subject = "Scheduled cancelled for journey on " + journeyDate;
+		emailSender.sendMail(from, toEmail, subject, ticketId, name, passengers);
+	}
+	
+	/*
+	 * public static void main(String[] args) { System.out.println("Inside main");
+	 * try { testMethod("4"); } catch (SQLException e) {
+	 * System.out.println("Error occured in main"); } } public static void
+	 * testMethod(String scheduleId) throws SQLException { Connection con =
+	 * getRemoteConnection(); Statement stmt = con.createStatement(); ResultSet rs =
+	 * stmt.executeQuery("SELECT * FROM flight_app.ticket where schedule_id='4';");
+	 * List<Ticket> tickets = new ArrayList<>(); while(rs.next()) { Ticket ticket =
+	 * new Ticket(); ticket.setAirlineName(rs.getString("airline_name"));
+	 * ticket.setTicketId(rs.getString("ticket_id"));
+	 * System.out.println("TicketId: " + rs.getString("ticket_id"));
+	 * tickets.add(ticket); } System.out.println("Result: " + tickets);
+	 * System.out.println("Result size: " + tickets.size());
+	 * System.out.println("Finding passengers"); List<Passenger> passengers = new
+	 * ArrayList<Passenger>(); for(Ticket ticketData : tickets) { String query =
+	 * "SELECT * FROM flight_app.passenger where ticket_id='" +
+	 * ticketData.getTicketId() + "';"; System.out.println("Query: " + query);
+	 * ResultSet rspass = stmt.executeQuery( query); List<Passenger> passengerList =
+	 * new ArrayList<>(); while(rspass.next()) { Passenger passenger = new
+	 * Passenger(); passenger.setName(rspass.getString("name"));
+	 * passenger.setTicketId(rspass.getString("ticket_id"));
+	 * passenger.setSeatNo(rspass.getInt("seat_no"));
+	 * passenger.setAge(rspass.getInt("age"));
+	 * passenger.setMeal(rspass.getString("meal"));
+	 * passenger.setSex(rspass.getString("sex")); passengerList.add(passenger);
+	 * System.out.println("try: " + passengerList); }
+	 * passengers.addAll(passengerList); }
+	 * 
+	 * System.out.println("Passengers size: " + passengers.size());
+	 * System.out.println(passengers);
+	 * 
+	 * // List<Ticket> flightTickets =
+	 * ticketRepo.findByScheduleId(Integer.valueOf(scheduleId)); //
+	 * System.out.println("Size of tickets booked: " + flightTickets.size()); //
+	 * List<Passenger> passengers = new ArrayList<Passenger>(); // for (Ticket
+	 * ticket : flightTickets) { //
+	 * passengers.addAll(getPassengerByTicketId(ticket.getTicketId())); // } //
+	 * System.out.println("Size of passengers: " + passengers.size()); // if
+	 * (!passengers.isEmpty()) { // System.out.println("Result: " + passengers); //
+	 * }else { // System.out.println("No data"); // } }
+	 * 
+	 * private static Connection getRemoteConnection() { if (true) { try {
+	 * Class.forName("com.mysql.jdbc.Driver"); // String dbName =
+	 * System.getenv("RDS_DB_NAME"); String userName = "admin"; String password =
+	 * "Admin12345"; // String hostname = System.getenv("RDS_HOSTNAME"); String port
+	 * = System.getenv("RDS_PORT"); String jdbcUrl =
+	 * "jdbc:mysql://flight-admin-aws.cyif5r1ubywm.us-east-2.rds.amazonaws.com:3306/flight_app"
+	 * + "?user=" + userName + "&password=" + password;
+	 * System.out.println("Trying to get connection...."); Connection con =
+	 * DriverManager.getConnection(jdbcUrl);
+	 * System.out.println("Remote connection successful."); return con; } catch
+	 * (ClassNotFoundException e) { System.out.println("Error: " + e.getMessage());}
+	 * catch (SQLException e) { System.out.println("Error: " + e.getMessage());} }
+	 * return null; }
+	 */ 
 	public String getTicketId(String scheduleId) {
 		StringBuilder sb = new StringBuilder();
 		List<Ticket> flightTickets = ticketRepo.findByScheduleId(Integer.valueOf(scheduleId));
