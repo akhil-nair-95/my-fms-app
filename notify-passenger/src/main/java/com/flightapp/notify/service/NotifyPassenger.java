@@ -22,11 +22,11 @@ public class NotifyPassenger {
 //	private PassengerRepository passengerRepo;
 	
 	
-	  @Value("${sns.topic.arn}") 
-	  private String snsTopicARN;
-	  
-	  @Autowired 
-	  private AmazonSNSClient amazonSNSclient;
+//	  @Value("${sns.topic.arn}") 
+//	  private String snsTopicARN;
+//	  
+//	  @Autowired 
+//	  private AmazonSNSClient amazonSNSclient;
 	 
 	
     @Bean
@@ -38,10 +38,10 @@ public class NotifyPassenger {
 					+ " has been cancelled. Sorry for the inconvenience. \n "
 					+ "Please search and book another ticket.";
 
-			PublishRequest publishRequest = new PublishRequest(snsTopicARN, msg, "Schedule Cancelled !!!!");
-			amazonSNSclient.publish(publishRequest);
+//			PublishRequest publishRequest = new PublishRequest(snsTopicARN, msg, "Schedule Cancelled !!!!");
+//			amazonSNSclient.publish(publishRequest);
 
-			return new APIGatewayProxyResponseEvent().withBody("Successfully notified users").withStatusCode(200);
+			return new APIGatewayProxyResponseEvent().withBody(msg).withStatusCode(200);
 		};
 		return f;
 	}
